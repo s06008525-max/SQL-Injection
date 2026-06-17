@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Vulnerable</title>
+    <style>
+        body { font-family: monospace; background-color: #0d0d0d; color: #ff4b2b; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+        .login-box { background: #1a1a1a; padding: 40px; border-radius: 8px; border: 1px solid #ff4b2b; width: 400px; box-shadow: 0 0 20px rgba(255, 75, 43, 0.2); }
+        input { width: 90%; padding: 10px; margin: 10px 0; background: #333; border: 1px solid #ff4b2b; color: white; font-family: monospace; }
+        button { width: 100%; padding: 12px; background: #ff4b2b; color: white; border: none; font-weight: bold; cursor: pointer; margin-top: 15px; }
+        .alert { background: #330000; padding: 15px; border-left: 4px solid #ff4b2b; margin-bottom: 20px; font-size: 0.9em; }
+        .destroyed { background: #ff0000; color: white; text-align: center; padding: 20px; font-size: 1.2em; font-weight: bold; animation: blink 1s infinite; }
+        @keyframes blink { 50% { opacity: 0.5; } }
+        a { color: #ff4b2b; text-align: center; display: block; margin-top: 20px; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <h2 style="text-align: center;">Acceso Inseguro</h2>
+        
+        {% if status == "destroyed" %}
+            <div class="destroyed">
+                ⚠️ FATAL ERROR ⚠️<br>Base de datos destruida (Tabla eliminada).
+            </div>
+        {% elif status == "success" %}
+            <div class="alert" style="color: #00ff00; border-color: #00ff00;">
+                🔓 Bypass Exitoso.<br><br>Consulta ejecutada:<br><code>{{ query }}</code>
+            </div>
+        {% elif status == "error" %}
+            <div class="alert">Acceso Denegado / Consulta Fallida</div>
+        {% else %}
+            <div class="alert">
+                <strong>Prueba esto para bypassear:</strong><br>
+                User: admin' --<br><br>
+                <strong>Prueba esto para DESTRUIR:</strong><br>
+                User: admin'; DROP TABLE users; --
+            </div>
+        {% endif %}
+
+        <form action="/vulnerable" method="POST">
+            <label>Usuario</label>
+            <input type="text" name="username" required>
+            <label>Contraseña</label>
+            <input type="password" name="password" value="test">
+            <button type="submit">Ejecutar Consulta</button>
+        </form>
+        <a href="/">[ Volver a la central ]</a>
+    </div>
+</body>
+</html>

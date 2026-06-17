@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Seguro</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4fcf7; color: #333; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+        .login-box { background: white; padding: 40px; border-radius: 12px; border-top: 5px solid #11998e; width: 400px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        input { width: 90%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 6px; font-family: inherit; }
+        button { width: 100%; padding: 12px; background: linear-gradient(135deg, #11998e, #38ef7d); color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; margin-top: 15px; }
+        .alert { background: #e8f5e9; padding: 15px; border-radius: 6px; margin-bottom: 20px; font-size: 0.9em; color: #2e7d32; text-align: center; }
+        .alert-error { background: #ffebee; color: #c62828; }
+        a { color: #11998e; text-align: center; display: block; margin-top: 20px; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <h2 style="text-align: center; color: #11998e;">Portal Seguro</h2>
+        
+        {% if status == "success" %}
+            <div class="alert">
+                ✅ <strong>Acceso Concedido</strong><br>Credenciales verificadas con Hash.
+            </div>
+        {% elif status == "db_error" %}
+            <div class="alert alert-error">
+                🛡️ <strong>Conexión a BD Rechazada</strong><br>Las credenciales del servidor (.env) no coinciden.
+            </div>
+        {% elif status == "error" %}
+            <div class="alert alert-error">
+                ⚠️ Credenciales Inválidas o Intento de Inyección Bloqueado.
+            </div>
+        {% else %}
+            <div class="alert">
+                User: <strong>admin</strong> | Pass: <strong>admin1234</strong><br>
+                <em>(El servidor está leyendo la conexión desde el archivo oculto .env)</em>
+            </div>
+        {% endif %}
+
+        <form action="/seguro" method="POST">
+            <label>Usuario</label>
+            <input type="text" name="username" required>
+            <label>Contraseña</label>
+            <input type="password" name="password" required>
+            <button type="submit">Iniciar Sesión Segura</button>
+        </form>
+        <a href="/">← Regresar al menú</a>
+    </div>
+</body>
+</html>
