@@ -1,8 +1,8 @@
 # Tarea.- Seguridad y Vulnerabilidades en Bases de Datos: SQL Injection
 
-**Instituto Politécnico Nacional - ESCOM** **Ingeniería en Inteligencia Artificial (3er Semestre)** **Alumnos:** <br>Calvario Santiago Derek  
-Barrios Torres Jesús Alfonso
-<br>Aguilar López Minerva
+**Instituto Politécnico Nacional - ESCOM** **Ingeniería en Inteligencia Artificial (3er Semestre)** **Alumnos:** <br>-Calvario Santiago Derek  
+-Barrios Torres Jesús Alfonso
+<br>-Aguilar López Minerva
  
 
 ## 1. ¿Qué es SQL Injection (SQLi)?
