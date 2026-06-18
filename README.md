@@ -2,7 +2,7 @@
 
 **Instituto Politécnico Nacional - ESCOM** **Ingeniería en Inteligencia Artificial (3er Semestre)** **Alumnos:** Calvario Santiago Derek  
 Barrios Torres Jesús Alfonso
-** Aguilar López Minerva
+\Aguilar López Minerva
  
 
 ## 1. ¿Qué es SQL Injection (SQLi)?
